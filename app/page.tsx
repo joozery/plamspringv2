@@ -12,6 +12,10 @@ import { connectDB } from "@/lib/mongodb";
 import { SiteSetting, Project, ProjectPage, LifestyleSlide } from "@/lib/models";
 import { fetchGeoData } from "@/lib/geo-schema";
 
+// Homepage pulls admin-editable content (projects, settings, lifestyle
+// slides) from MongoDB — must render per-request, not freeze at build time.
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   await connectDB();
 
