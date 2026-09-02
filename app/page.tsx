@@ -10,14 +10,16 @@ import LoanCalculator from "./components/LoanCalculator";
 import FooterServer from "./components/FooterServer";
 import { connectDB } from "@/lib/mongodb";
 import { SiteSetting, Project, ProjectPage, LifestyleSlide } from "@/lib/models";
+import { fetchGeoData } from "@/lib/geo-schema";
 
 export default async function Home() {
   await connectDB();
 
-  const [settings, projects, lifestyleSlides] = await Promise.all([
+  const [settings, projects, lifestyleSlides, geoData] = await Promise.all([
     SiteSetting.find({ key: { $in: ["home_videos", "featured_video"] } }).lean(),
     Project.find({ is_published: true }).sort({ sort_order: 1 }).lean(),
     LifestyleSlide.find({ is_published: true }).sort({ sort_order: 1 }).lean(),
+    fetchGeoData("/", "Palm Springs"),
   ]);
 
   // Resolve linked project page slugs
@@ -57,6 +59,19 @@ export default async function Home() {
 
   return (
     <>
+      {geoData.entityData && (
+        <script
+          id="llm-data"
+          type="application/json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(geoData.entityData) }}
+        />
+      )}
+      {geoData.schema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(geoData.schema) }}
+        />
+      )}
       <Navbar />
       <main>
         <HeroSection />
