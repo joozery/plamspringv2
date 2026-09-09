@@ -7,6 +7,7 @@ import OurFamilyGrid from "../components/OurFamilyGrid";
 import FooterServer from "../components/FooterServer";
 import { connectDB } from "@/lib/mongodb";
 import { SiteSetting, OurFamilyImage } from "@/lib/models";
+import { PageSchema } from "@/lib/page-schema";
 
 export const metadata = {
   title: "Our Family | Palm Springs",
@@ -29,6 +30,7 @@ export default async function OurFamilyPage() {
 
   return (
     <>
+      <PageSchema path="/our-family" title="Our Family" />
       <Navbar />
       <main>
         <HeroSection />
