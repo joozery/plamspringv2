@@ -7,6 +7,7 @@ import GoogleTranslateProvider from "./components/GoogleTranslateProvider";
 import TransitionProvider from "./components/TransitionProvider";
 import { connectDB } from "@/lib/mongodb";
 import { SiteSetting } from "@/lib/models";
+import { SITE_URL } from "@/lib/site";
 
 const GTM_ID = "GTM-NQBJT65K";
 const GA_ID = "G-KCQ9ZW5JLT";
@@ -19,7 +20,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://palmspringscm.com"),
+  metadataBase: new URL(SITE_URL),
   title: "Palm Springs",
   description: "Palm Springs — เลือกปาล์มสปริงส์ เพื่อชีวิตที่ดีกว่า",
 };

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { connectDB } from "@/lib/mongodb";
 import { ProjectPage } from "@/lib/models";
+import { PageSchema } from "@/lib/page-schema";
 import Navbar from "../../components/Navbar";
 import FooterServer from "../../components/FooterServer";
 import ProjectHero from "../../components/ProjectHero";
@@ -93,6 +94,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
   return (
     <>
+      <PageSchema path={`/projects/${slug}`} title={project.name} />
       <Navbar />
       <main>
         <ProjectHero

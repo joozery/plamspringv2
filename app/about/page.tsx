@@ -6,6 +6,7 @@ import AwardsSection from "../components/AwardsSection";
 import FooterServer from "../components/FooterServer";
 import { connectDB } from "@/lib/mongodb";
 import { Milestone, Award, Post, SiteSetting } from "@/lib/models";
+import { PageSchema } from "@/lib/page-schema";
 
 export const metadata = {
   title: "About Us | Palm Springs",
@@ -28,6 +29,7 @@ export default async function AboutPage() {
 
   return (
     <>
+      <PageSchema path="/about" title="About Us" />
       <Navbar />
       <main>
         <HeroSection />

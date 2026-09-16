@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar";
 import FooterServer from "../../components/FooterServer";
 import { connectDB } from "@/lib/mongodb";
 import { Post } from "@/lib/models";
+import { PageSchema } from "@/lib/page-schema";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -42,6 +43,7 @@ export default async function BlogPostPage({
 
   return (
     <>
+      <PageSchema path={`/blog/${slug}`} title={post.title} />
       <Navbar />
 
       {/* Hero cover */}

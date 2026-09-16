@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Ansio packages ship raw .tsx source, needs transpiling.
+  transpilePackages: ["@ansio/next-schema", "@ansio/ssr-schema"],
+
   images: {
     remotePatterns: [
       // Cloudflare R2 public CDN

@@ -3,6 +3,7 @@ import FooterServer from "../components/FooterServer";
 import Link from "next/link";
 import { connectDB } from "@/lib/mongodb";
 import { ProjectPage } from "@/lib/models";
+import { PageSchema } from "@/lib/page-schema";
 
 export const metadata = {
   title: "โครงการของเรา | Palm Springs",
@@ -24,6 +25,7 @@ export default async function ProjectsPage() {
 
   return (
     <>
+      <PageSchema path="/projects" title="โครงการของเรา" />
       <Navbar />
       <main className="bg-[#F8F7F4]">
 

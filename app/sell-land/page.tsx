@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import FooterServer from "../components/FooterServer";
 import LandInquiryForm from "./LandInquiryForm";
+import { PageSchema } from "@/lib/page-schema";
 
 export const metadata = {
   title: "ขายที่ดิน | Palm Springs",
@@ -10,6 +11,7 @@ export const metadata = {
 export default function SellLandPage() {
   return (
     <>
+      <PageSchema path="/sell-land" title="ขายที่ดิน" />
       <Navbar />
       <main>
         {/* Hero banner */}
