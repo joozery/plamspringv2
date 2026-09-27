@@ -10,7 +10,6 @@ import LoanCalculator from "./components/LoanCalculator";
 import FooterServer from "./components/FooterServer";
 import { connectDB } from "@/lib/mongodb";
 import { SiteSetting, Project, ProjectPage, LifestyleSlide } from "@/lib/models";
-import { fetchEntityData } from "@/lib/geo-schema";
 import { PageSchema } from "@/lib/page-schema";
 
 // Homepage pulls admin-editable content (projects, settings, lifestyle
@@ -20,11 +19,10 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   await connectDB();
 
-  const [settings, projects, lifestyleSlides, entityData] = await Promise.all([
+  const [settings, projects, lifestyleSlides] = await Promise.all([
     SiteSetting.find({ key: { $in: ["home_videos", "featured_video"] } }).lean(),
     Project.find({ is_published: true }).sort({ sort_order: 1 }).lean(),
     LifestyleSlide.find({ is_published: true }).sort({ sort_order: 1 }).lean(),
-    fetchEntityData("/"),
   ]);
 
   // Resolve linked project page slugs
@@ -64,13 +62,6 @@ export default async function Home() {
 
   return (
     <>
-      {entityData && (
-        <script
-          id="llm-data"
-          type="application/json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(entityData) }}
-        />
-      )}
       <PageSchema path="/" title="Palm Springs" />
       <Navbar />
       <main>
